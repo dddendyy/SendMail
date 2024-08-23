@@ -24,4 +24,3 @@ class Mailing(models.Model):
     first_send_datetime = models.DateTimeField(verbose_name='дата/время первой отправки')
     periodicity = models.CharField(max_length=30, choices=PERIODICITY_CHOICES)
     status = models.CharField(max_length=30, choices=STATUS_CHOICES)
-
