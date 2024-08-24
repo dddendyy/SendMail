@@ -6,6 +6,22 @@ class Client(models.Model):
     email = models.EmailField()
     comment = models.TextField(verbose_name='комментарий')
 
+    def __str__(self):
+        return (f'{self.name}, {self.email}\n'
+                f'{self.comment}')
+
+
+class Message(models.Model):
+    subject = models.CharField(max_length=300, verbose_name='тема')
+    text = models.TextField(verbose_name='текст')
+
+    def __str__(self):
+        return f'Письмо с темой {self.subject}'
+
+    class Meta:
+        verbose_name = 'письмо'
+        verbose_name_plural = 'письма'
+
 
 class Mailing(models.Model):
 
@@ -22,5 +38,14 @@ class Mailing(models.Model):
     ]
 
     first_send_datetime = models.DateTimeField(verbose_name='дата/время первой отправки')
-    periodicity = models.CharField(max_length=30, choices=PERIODICITY_CHOICES)
-    status = models.CharField(max_length=30, choices=STATUS_CHOICES)
+    periodicity = models.CharField(max_length=30, choices=PERIODICITY_CHOICES, verbose_name='периодичность')
+    status = models.CharField(max_length=30, choices=STATUS_CHOICES, verbose_name='статус')
+    message = models.OneToOneField(Message, on_delete=models.SET_NULL, verbose_name='письмо', null=True, blank=True)
+    client = models.ManyToManyField(Client, verbose_name='клиенты')
+
+    def __str__(self):
+        return f'{self.message}'
+
+    class Meta:
+        verbose_name = 'рассылка'
+        verbose_name_plural = 'рассылки'
