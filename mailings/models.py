@@ -4,11 +4,15 @@ from django.db import models
 class Client(models.Model):
     name = models.CharField(max_length=150, verbose_name='ФИО')
     email = models.EmailField()
-    comment = models.TextField(verbose_name='комментарий')
+    comment = models.TextField(verbose_name='комментарий', null=True, blank=True)
 
     def __str__(self):
         return (f'{self.name}, {self.email}\n'
                 f'{self.comment}')
+
+    class Meta:
+        verbose_name = 'клиент'
+        verbose_name_plural = 'клиенты'
 
 
 class Message(models.Model):
