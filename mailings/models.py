@@ -23,6 +23,17 @@ class Message(models.Model):
         verbose_name_plural = 'письма'
 
 
+class Attempt(models.Model):
+    ATTEMPT_STATUS_CHOICE = [
+        ('success', 'Удачно'),
+        ('error', 'Ошибка')
+    ]
+
+    last_attempt_datetime = models.DateTimeField(verbose_name='дата/время последней попытки')
+    status = models.CharField(max_length=15, choices=ATTEMPT_STATUS_CHOICE, verbose_name='статус')
+    response = models.CharField(max_length=100, verbose_name='ответ почтового сервера')
+
+
 class Mailing(models.Model):
 
     PERIODICITY_CHOICES = [
@@ -42,6 +53,7 @@ class Mailing(models.Model):
     status = models.CharField(max_length=30, choices=STATUS_CHOICES, verbose_name='статус')
     message = models.OneToOneField(Message, on_delete=models.SET_NULL, verbose_name='письмо', null=True, blank=True)
     client = models.ManyToManyField(Client, verbose_name='клиенты')
+    attempts = models.ForeignKey(Attempt, on_delete=models.SET_NULL, verbose_name='попытки', null=True, blank=True)
 
     def __str__(self):
         return f'{self.message}'
