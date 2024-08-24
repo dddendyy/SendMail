@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView
 
+from mailings.forms import MailingForm
 from mailings.models import Mailing, Client
 
 
@@ -22,3 +24,9 @@ class MailingDetailView(DetailView):
         context_data['client_list'] = client_list
 
         return context_data
+
+
+class MailingCreateView(CreateView):
+    model = Mailing
+    form_class = MailingForm
+    success_url = reverse_lazy('mailings:mailings_list')

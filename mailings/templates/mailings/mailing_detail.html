@@ -37,8 +37,11 @@
                             <a href="#" class="btn btn-sm btn-outline-success">Изменить</a>
                             <a href="#" class="btn btn-sm btn-outline-danger">Удалить</a>
                         </div>
-                        <p><b>Статус</b>: {{ mailing.status }}</p>
                     </div>
+                    <p>
+                    <p><b>Статус:</b> {{ mailing.status }}</p>
+                    <p><b>Первая отправка:</b>{{ mailing.first_send_datetime }}
+                    </p>
                 </div>
             </div>
         </div>

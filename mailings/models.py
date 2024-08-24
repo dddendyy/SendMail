@@ -41,9 +41,9 @@ class Mailing(models.Model):
         ('finished', 'Завершена')
     ]
 
-    first_send_datetime = models.DateTimeField(verbose_name='дата/время первой отправки')
+    first_send_datetime = models.DateTimeField(verbose_name='дата/время первой отправки', null=True, blank=True)
     periodicity = models.CharField(max_length=30, choices=PERIODICITY_CHOICES, verbose_name='периодичность')
-    status = models.CharField(max_length=30, choices=STATUS_CHOICES, verbose_name='статус')
+    status = models.CharField(max_length=30, choices=STATUS_CHOICES, verbose_name='статус', default='created')
     message = models.OneToOneField(Message, on_delete=models.SET_NULL, verbose_name='письмо', null=True, blank=True)
     client = models.ManyToManyField(Client, verbose_name='клиенты')
 
