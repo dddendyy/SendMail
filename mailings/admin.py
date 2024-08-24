@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from mailings.models import Mailing, Client
+from mailings.models import Mailing, Client, Message
 
 
 @admin.register(Mailing)
@@ -13,3 +13,8 @@ class AdminMailing(admin.ModelAdmin):
 class AdminClient(admin.ModelAdmin):
     list_display = ('id', 'name', 'email')
     search_fields = ('name', 'email')
+
+
+@admin.register(Message)
+class AdminMessage(admin.ModelAdmin):
+    list_display = ('subject', 'text')
