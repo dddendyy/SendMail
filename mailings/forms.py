@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import BooleanField
 
-from mailings.models import Mailing
+from mailings.models import Mailing, Message
 
 
 class StyleFormMixin:
@@ -19,3 +19,10 @@ class MailingForm(StyleFormMixin, forms.ModelForm):
     class Meta:
         model = Mailing
         exclude = ('first_send_datetime', 'status')
+
+
+class MessageForm(StyleFormMixin, forms.ModelForm):
+
+    class Meta:
+        model = Message
+        fields = '__all__'

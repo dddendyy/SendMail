@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="container">
-    <a href="#" class="btn btn-outline-success">Сформировать письмо</a>
+    <a href="{% url 'mailings:message_create' %}" class="btn btn-outline-success">Сформировать письмо</a>
     <p>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         {% for message in object_list %}
@@ -16,7 +16,7 @@
                     <p class="card-text text-truncate">{{ message.text }}</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                            <a href="#" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+                            <a href="{% url 'mailings:message_detail' message.pk %}" class="btn btn-sm btn-outline-secondary">Подробнее</a>
                         </div>
                     </div>
                 </div>
