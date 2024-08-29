@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from mailings.forms import MailingForm
-from mailings.models import Mailing, Client
+from mailings.models import Mailing, Client, Message
 
 
 def home_view(request):
@@ -41,3 +41,7 @@ class MailingUpdateView(UpdateView):
 class MailingDeleteView(DeleteView):
     model = Mailing
     success_url = reverse_lazy('mailings:mailings_list')
+
+
+class MessagesListView(ListView):
+    model = Message
