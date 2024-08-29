@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from mailings.forms import MailingForm
 from mailings.models import Mailing, Client
@@ -35,4 +35,9 @@ class MailingCreateView(CreateView):
 class MailingUpdateView(UpdateView):
     model = Mailing
     form_class = MailingForm
+    success_url = reverse_lazy('mailings:mailings_list')
+
+
+class MailingDeleteView(DeleteView):
+    model = Mailing
     success_url = reverse_lazy('mailings:mailings_list')
