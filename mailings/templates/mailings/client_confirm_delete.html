@@ -1,0 +1,14 @@
+{% extends 'mailings/base.html' %}
+
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    <p>Вы уверены, что хотите удалить клиента?</p>
+    <button type="submit" class="btn btn-danger">
+        Подтвердить
+    </button>
+    <a href="{% url 'mailings:clients_list' %}" class="btn btn-outline-secondary">Отмена</a>
+</form>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'mailings/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h1><b>{{ client.name }}</b></h1>
+                    <h4>Почта: {{ client.email }}</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ client.comment }}</p>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="{% url 'mailings:client_update' client.pk %}" class="btn btn-sm btn-outline-success">Изменить</a>
+                            <a href="{% url 'mailings:client_delete' client.pk %}" class="btn btn-sm btn-outline-danger">Удалить</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p></p>
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="btn-group">
+            <a href="{% url 'mailings:clients_list' %}" class="btn btn-outline-primary btn-sm">Назад</a>
+            <a href="{% url 'mailings:homepage' %}" class="btn btn-outline-primary btn-sm">Домашняя страница</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
